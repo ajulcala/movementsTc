@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/personal")
 public class MovementsPersonalController {
 
     @Autowired
@@ -26,7 +26,7 @@ public class MovementsPersonalController {
     }
 
     @PostMapping("/movements")
-    public Flux<MovementsPersonal> findbycard(@Valid @RequestBody Card card){
+    public Flux<MovementsPersonal> findByCard(@Valid @RequestBody Card card){
         return service.findByCard(card);
     }
 
@@ -36,7 +36,7 @@ public class MovementsPersonalController {
     }
 
     @PostMapping("/checkbalance/fixed")
-    public Flux<FixedTermAccount> carfixed(@Valid @RequestBody Card card){
+    public Flux<FixedTermAccount> carFixed(@Valid @RequestBody Card card){
         return service.cardFixed(card);
     }
 
