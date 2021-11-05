@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/business")
+@RequestMapping("api/business")
 public class MovementsBusinessController {
     @Autowired
     private MovementsBusinessService service;
