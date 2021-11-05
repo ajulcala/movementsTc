@@ -6,6 +6,7 @@ import com.movemments.app.models.dto.Card;
 import com.movemments.app.models.dto.CurrentAccountPersonal;
 import com.movemments.app.models.dto.FixedTermAccount;
 import com.movemments.app.models.dto.SavingsAccount;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
@@ -15,6 +16,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.Date;
+@Slf4j
 @Service
 public class MovementsPersonalServiceImpl implements MovementsPersonalService{
     @Value("${config.base.savingsaccount}")
@@ -83,6 +85,7 @@ public class MovementsPersonalServiceImpl implements MovementsPersonalService{
                 .body(Mono.just(movementsPersonal),Card.class)
                 .retrieve()
                 .bodyToFlux(SavingsAccount.class);
+        log.info("saldo modificado en la cuenta de ahorro");
         return savings.next().defaultIfEmpty(new SavingsAccount());
     }
 
@@ -100,7 +103,7 @@ public class MovementsPersonalServiceImpl implements MovementsPersonalService{
                 .body(Mono.just(movementsPersonal),Card.class)
                 .retrieve()
                 .bodyToFlux(FixedTermAccount.class);
-
+        log.info("saldo modificado en la cuenta a plazo fijo");
         dao.save(movementsPersonal).subscribe();
         return fiexd.next();
     }
@@ -143,7 +146,7 @@ public class MovementsPersonalServiceImpl implements MovementsPersonalService{
                 .body(Mono.just(movementsPersonal),Card.class)
                 .retrieve()
                 .bodyToFlux(CurrentAccountPersonal.class);
-
+        log.info("saldo modificado en la cuenta corriente personal");
         dao.save(movementsPersonal).subscribe();
         return fiexd.next();
     }
