@@ -68,3 +68,37 @@ enviamos la siguiente estructura:
    "password": "1234"
 }
 
+MOVEMENTS EMPRESARIAL
+
+Para agregar un movimiento a un CURRENT BUSINESS ACCOUNT
+http://localhost:8093/api/business/setcurrentbusiness a traves de un POST
+
+{    
+    "condition": 1,
+    "amount": 100.00,
+    "card": {
+        "number": "333-635-565-01",
+        "password": "1234"
+    }
+}
+
+para ver el saldo
+
+http://localhost:8093/api/business/checkbalance a traves de un POST
+
+{
+    "number": "333-635-565-01",
+    "password": "1234"
+}
+
+
+PARA BUSCAR MOVIMIENTOS DE UNA TARJETA:
+
+http://localhost:8093/api/business/movements a traves de un POST
+
+enviamos la siguiente estructura:
+{
+   "number": "125-635-888-1",
+   "password": "1234"
+}
+
